@@ -1,0 +1,15 @@
+﻿@model a1.Models.ShoppingList
+
+@{
+    ViewBag.Title = "ShowList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    @foreach(string s in ViewBag.list)
+    {
+        <div style="align-content:center">s</div>
+        <br/>
+    }
+</body>
+

@@ -1,0 +1,24 @@
+﻿@using a1.Models;
+
+<div id="list_autocomplete">
+    <table class="tab_autocomplete">
+        @foreach(Product product in ViewBag.list3)
+        {
+            <tr>
+                <td><img src="@Url.Content(@product.UrlImage)"/></td>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+            </tr>
+        }
+        @foreach (Product product in ViewBag.list4)
+        {
+            <tr>
+                <td><img src="@Url.Content(@product.UrlImage)" /></td>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+            </tr>
+        }
+    </table>
+</div>
+
+

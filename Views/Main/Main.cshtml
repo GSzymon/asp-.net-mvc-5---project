@@ -1,0 +1,69 @@
+﻿@model a1.Models.ProductDetalis
+
+@{
+    Layout = "~/Views/Shared/_AJAXLayout.cshtml";
+}
+
+<head>
+    @section scripts
+    {
+        <script type="text/javascript" src="~/Scripts/jquery-3.1.1.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    }
+</head>
+<script>
+    $( function() {
+    var availableTags = @Html.Raw(Json.Encode(ViewBag.names));
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+</script>
+
+@using (Ajax.BeginForm("ShowProducts", "Main", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div1", InsertionMode = InsertionMode.Replace, LoadingElementId = "gif" }))
+{
+    <div class="ui-widget">
+        <br />Nazwa produktu: @Html.TextBoxFor(p => p.Text, new { id = "tags" })  &nbsp;
+        <input class="btn btn-primary" type="submit" value="Szukaj" onClick="$('#gif').css('visibility', 'visible')" />
+        <img id="gif" src="~/Images/loading.gif" style="align-content:center; margin:0; visibility:hidden; width: 17px; height: 17px;" />
+        @{Html.EndForm();}
+    </div>
+}
+
+<div id="div1"> 
+</div>
+
+
+
+<script>
+    var products = new Array();
+
+    function addToList(id) {
+        products.push(id)
+        var str = "Dodano:   " + id + '\n';
+        alert(str);
+    }
+
+function goToSummary() {
+    var objs = JSON.stringify({ param: products });
+    debugger; 
+    $.ajax({
+        type: "POST"
+        , url: "@Url.Action("ListDone", "MainController")"
+        , contentType: "application/json,charset=utf-8"
+        , async: false
+        , traditional: true
+        , data: objs,
+        datatype: "json",
+        success: function (result) {
+            debugger;
+            alert("called");
+        }
+        , error: function (result) {
+        }
+    });
+}
+</script>

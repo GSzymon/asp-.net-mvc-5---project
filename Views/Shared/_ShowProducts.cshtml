@@ -1,0 +1,39 @@
+﻿@model a1.Models.ShoppingList
+@using a1.Models;
+
+<body>
+    <script src="~/Scripts/MyScripts.js"/>
+    &emsp;
+    <input type="button" value="Przejdź do koszyka" onclick="goToSummary()"/>
+    <p align="center" style="color:red; font-size:x-large"><b>Znalezione produkty:</b></p><br/>
+    <table class="tab" align="center">
+        @foreach (Product product in ViewBag.list1)
+        {
+            <tr class="row">
+                <th align="right" width="1px" class="col"> <img src="@Url.Content(@product.UrlImage)" />&nbsp; &nbsp; </th>
+                <th class="col"> @product.Name </th>
+                <th class="col"> @product.Price </th>
+                <th class="col"> <input value="Dodaj" id="@product.Name" + type="button" onclick="addToList(id)"/></th>
+            </tr>
+        }
+    </table>
+    <br /><br />
+
+    <br /><br />
+    <p align="center" style="color:red; font-size:x-large"> <b>Pozostałe: </b></p><br/>
+    <table class="tab" align="center">
+        @foreach (Product product in ViewBag.list2)
+        {
+            <tr class="row">
+                <th align="right" width="1px" class="col"> <img src="@Url.Content(@product.UrlImage)" />&nbsp; &nbsp; </th>
+                <th style="background-color:lightgrey" class="col"> @product.Name </th>
+                <th style="background-color:lightgrey" class="col"> @product.Price </th>
+                <th style="background-color:lightgrey" class="col"> <input value="Dodaj" id="@product.Name" + type="button" onclick="addToList(this.id)" /></th>
+            </tr>
+        }
+    </table>
+    &emsp;
+</body>
+
+
+

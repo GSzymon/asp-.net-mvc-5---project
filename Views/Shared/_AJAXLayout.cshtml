@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<head>
+    <link href="@Url.Content("~/Styles/StyleSheet1.css")" rel="stylesheet" type="text/css" />
+    @RenderSection("Styles", false)
+    <meta name="viewport" content="width=device-width" />
+    @RenderSection("scripts")
+</head>
+
+<body>
+    <header>
+        <p id="HeadMenu">
+            <a id="HeadUrls" href="@Url.Action("Index", "Home")"> Strona startowa</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <a id="HeadUrls" href="@Url.Action("Index", "Home")"> Strona startowa</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <a id="HeadUrls" href="@Url.Action("Index", "Home")"> Strona startowa</a>
+        </p>
+    </header>
+
+    <div class="wrapper">
+        @RenderBody()
+        <div class="push"></div>
+    </div>
+
+    <div class="footer">
+        Created by Szymon Gorzula
+    </div>
+</body>
